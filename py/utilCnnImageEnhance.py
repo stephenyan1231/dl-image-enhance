@@ -1,10 +1,6 @@
 import sys
-#sys.path.append(r'/home/zyan3/proj/cuda-convnet-plus/cuda-convnet-plus/py')
-#sys.path.append(r'D:\proj\cuda-convnet-plus\cuda-convnet-plus\py')
-#sys.path.append(r'D:\yzc\proj\cuda-convnet-plus\cuda-convnet-plus\py')
-sys.path.append(r'/home/yzc/yzc/proj/cuda-convnet-plus/cuda-convnet-plus/py')
-
 import os
+sys.path.append(os.environ['PROJ_DIR'] + 'cuda-convnet-plus/cuda-convnet-plus/py')
 import numpy as np
 import numpy.random as rd
 import time
