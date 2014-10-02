@@ -1,0 +1,9 @@
+## General
+
+
+# py folder
+py/*.pyc
+
+# matlab folder
+matlab
+
