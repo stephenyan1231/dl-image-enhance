@@ -1,6 +1,4 @@
 #!/bin/bash
 
-PROJ_DIR=$(pwd)
-PROJ_DIR="${PROJ_DIR}/../"
-echo $PROJ_DIR
+export PROJ_DIR="/home/yzc/yzc/proj/"
 
