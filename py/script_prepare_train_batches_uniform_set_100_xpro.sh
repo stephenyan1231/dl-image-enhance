@@ -2,7 +2,7 @@
 #prepare training batches for xpro III effect on uniform_set_100 dataset
 
 
-dataDir="/home/yzc/yzc/proj/cnn-image-enhance/data/uniform_set_100_xpro"
+dataDir="${PROJ_DIR}dl-image-enhance/data/uniform_set_100_xpro"
 train_image_id_file="uniform_set_100_train_id.txt"
 test_image_id_file="uniform_set_100_test_id.txt"
 data_save_dir="uniform_set_100_7K_10_batch_seg_voting_k0.10"

@@ -11,7 +11,6 @@ import copy
 
 from util import *
 from util_image import *
-from colorMapping import *
 from PrinCompAnal import *
 import scipy.misc
 import scipy.ndimage

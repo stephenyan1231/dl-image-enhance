@@ -1,10 +1,6 @@
 import sys
-sys.path.append('/home/yzc/yzc/proj/cuda-convnet-plus/cuda-convnet-plus/py')
-sys.path.append('D:\yzc\proj\cuda-convnet-plus\cuda-convnet-plus\py')
-sys.path.append('D:\proj\cuda-convnet-plus\cuda-convnet-plus\py')
-
-
-from colorMapping import *
+import os
+sys.path.append(os.environ['PROJ_DIR'] + 'cuda_convnet_plus/cuda_convnet_plus/py')
 from options import *
 from PrinCompAnal import *
 from util import *
@@ -12,7 +8,6 @@ from util_image import *
 from utilCnnImageEnhance import *
 from PCA import *
 
-import os
 import scipy
 import scipy.ndimage
 import scipy.stats
