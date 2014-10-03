@@ -7,3 +7,6 @@ py/*.pyc
 # matlab folder
 matlab
 
+# data/uniform_set_100_xpro folder
+data/uniform_set_100_xpro/*.zip
+data/uniform_set_100_xpro/*.tar.gz
