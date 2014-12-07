@@ -2,3 +2,8 @@
 
 export PROJ_DIR="PUT PROJECT ROOT FOLDER HERE"
 
+# install scipy and numpy
+sudo apt-get install python-numpy python-scipy python-matplotlib ipython ipython-notebook python-pandas python-sympy python-nose
+
+# install python packages
+for req in $(cat py/requirements.txt); do sudo pip install $req; done
