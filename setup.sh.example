@@ -1,5 +1,6 @@
 #!/bin/bash
 
+#export PROJ_DIR="/home/user/proj/"
 export PROJ_DIR="PUT PROJECT ROOT FOLDER HERE"
 
 # install scipy and numpy
