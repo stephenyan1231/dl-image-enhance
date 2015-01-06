@@ -2,7 +2,7 @@
 '''
 import sys
 import os
-sys.path.append(os.environ['PROJ_DIR'] + 'cuda_convnet_plus/cuda_convnet_plus/py')
+sys.path.append(os.environ['PROJ_DIR'] + 'cuda_convnet_plus/py')
 import numpy as np
 import numpy.random as rd
 import time

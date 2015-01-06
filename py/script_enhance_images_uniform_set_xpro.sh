@@ -1,5 +1,5 @@
 #!/bin/bash
-dataDir="${PROJ_DIR}dl-image-enhance/data/uniform_set_xpro"
+dataDir="../../dl-image-enhance/data/uniform_set_xpro"
 cpDir=${dataDir}/convnet_checkpoints/ConvNet__2014-12-07_10.10.12zyan3-server2
 cpName=2000.9
 

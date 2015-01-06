@@ -2,7 +2,7 @@
 '''
 import sys
 import os
-sys.path.append(os.environ['PROJ_DIR'] + 'cuda-convnet-plus/cuda-convnet-plus/py')
+sys.path.append(os.environ['PROJ_DIR'] + 'cuda_convnet_plus/py')
 import time
 import fnmatch
 import numpy as np
@@ -186,7 +186,6 @@ class ImageEnhancer(ConvNet):
                 num_batch = div_up(h, self.NUM_ROWS_PER_BATCH)
             else:
                 num_seg = len(in_img_seg)
-                print '%d segments' % num_seg
                 posx_flat = np.zeros((num_seg), dtype=np.uint32)
                 posy_flat = np.zeros((num_seg), dtype=np.uint32)
                 for j in range(num_seg):
@@ -343,11 +342,10 @@ class ImageEnhancer(ConvNet):
                     out_img = predLb.reshape((h,w,label_dim))
             else:
                 ''' super-pixel enhancement'''
-                print 'super pixel-based enhancement'
-                if self.use_local_context_ftr:
-                    print '\tuse context semantic feature'
-                    if self.use_local_context_color_ftr:
-                        print '\tuse context color feature'
+#                 if self.use_local_context_ftr:
+#                     print '\tuse context semantic feature'
+#                     if self.use_local_context_color_ftr:
+#                         print '\tuse context color feature'
                 pix_ftr = np.zeros((self.BATCH_NUM_IMG, pix_ftr_dim), dtype=np.single)
                 if self.use_local_context_ftr:
                     contextSemFtr = np.zeros((self.BATCH_NUM_IMG, local_context_paras['ftr_dim']), dtype=np.single)
@@ -545,14 +543,14 @@ class ImageEnhancer(ConvNet):
                     print 'post-processing time cost: %4.2f elapsed_extend_seg:%4.2f elapsed_transform:%4.2f' % \
                     (elapsed, elapsed_extend_seg, elapsed_transform)                 
                 elapsed_time = time.time() - st_time
-                print 'super-pixel-based enhancement elapsed_time:%f' % elapsed_time
+#                 print 'super-pixel-based enhancement elapsed_time:%f' % elapsed_time
                 enh_img = enh_img.reshape((h, w, ch))
             out_img_path = os.path.join(self.out_img_dir, self.test_imgs[i] + ".png")            
             save_image_LAB_into_sRGB(out_img_path, out_img)
             
             elapsed_time = time.time() - st
-            print 'predicting enhancement elapsed time:%f elapsed_time_data_prepare %f, elapsed_dp:%f'\
-            % (elapsed_time, elapsed_time_data_prepare, elapsed_dp)            
+#             print 'predicting enhancement elapsed time:%f elapsed_time_data_prepare %f, elapsed_dp:%f'\
+#             % (elapsed_time, elapsed_time_data_prepare, elapsed_dp)            
             
             num_pix[i] = h * w
             
@@ -561,10 +559,10 @@ class ImageEnhancer(ConvNet):
             Lab_dist[i] = np.sum(np.sqrt(np.sum((out_img - enh_img) ** 2, axis=2))) / num_pix[i]
             Lab_RMSE[i] = np.sqrt(np.sum(((out_img - enh_img) ** 2)) / num_pix[i])
             
-            print 'image %s L_dist %f L_RMSE %f Lab_dist:%f Lab_RMSE %f'\
-            % (self.test_imgs[i], L_dist[i], L_RMSE[i], Lab_dist[i], Lab_RMSE[i])             
-            print 'so far, mean L_dist %f L_RMSE %f Lab_dist:%f Lab_RMSE %f'\
-            % (np.sum(L_dist) / (i + 1), np.sum(L_RMSE) / (i + 1), np.sum(Lab_dist) / (i + 1), np.sum(Lab_RMSE) / (i + 1))
+            print 'image %s L_dist %f Lab_dist:%f '\
+            % (self.test_imgs[i], L_dist[i], Lab_dist[i])             
+            print 'so far, mean L_dist %f Lab_dist:%f'\
+            % (np.sum(L_dist) / (i + 1), np.sum(Lab_dist) / (i + 1))
             
             
             print '----------------------------'

@@ -1,8 +1,8 @@
 #!/bin/bash
 #prepare training batches for first effect (foreground highlighting) on uniform_set_100 dataset
 
-inDataDir="${PROJ_DIR}dl-image-enhance/data/uniform_set"
-enhDataDir="${PROJ_DIR}dl-image-enhance/data/uniform_set_foregroundpopout"
+inDataDir="../../dl-image-enhance/data/uniform_set"
+enhDataDir="../../dl-image-enhance/data/uniform_set_foregroundpopout"
 train_image_id_file="uniform_set_train_id.txt"
 test_image_id_file="uniform_set_test_id.txt"
 data_save_dir="uniform_set_foregroundpopout_7K_10_batch_seg_voting_k0.10"

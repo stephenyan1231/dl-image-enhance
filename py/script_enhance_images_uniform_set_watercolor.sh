@@ -1,5 +1,5 @@
 #!/bin/bash
-dataDir="${PROJ_DIR}dl-image-enhance/data/uniform_set_watercolor"
+dataDir="../../dl-image-enhance/data/uniform_set_watercolor"
 cpDir=${dataDir}/convnet_checkpoints/ConvNet__2014-12-07_10.32.22zyan3-server2
 cpName=6000.9
 
