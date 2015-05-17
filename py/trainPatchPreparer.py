@@ -39,7 +39,7 @@ class TrainPatchPreparer:
         self.init_local_context_ftr_paras()
         
         self.pool = mtp.Pool(processes=self.num_proc)
-    
+        self.global_ftr_mean = []
     def clear(self):
         if self.pool:
             self.pool.close()
@@ -190,9 +190,6 @@ class TrainPatchPreparer:
         reference: 2011 Learning Photographic Global Tonal Adjustment with a Database of Input Output Image Pairs '''
     def compute_image_global_ftr(self):
         print 'compute_image_global_ftr'
-        if not self.do_compute_image_global_ftr:
-            print 'compute_image_global_ftr:skip and return'
-            return
 
         num_imgs = len(self.imgs)
         paras = {}
@@ -200,8 +197,6 @@ class TrainPatchPreparer:
         paras['in_img_dir'] = self.ori_img_folder
         paras['log_luminance'] = self.log_luminance
         paras['semantic_map_dir'] = self.semantic_map_dir
-        
-
         
         ''' parallel computing '''
 
@@ -297,8 +292,8 @@ class TrainPatchPreparer:
                               cp1_pca_2, cp2_pca_2, cp3_pca_2, cp4_pca_2, \
                               hl_clipping_2, L_spatial_distr_2, bgHueHist_2))
         print 'img_global_ftr_l2 shape', img_global_ftr_l2.shape
-        mean_global_ftr_l2 = np.mean(img_global_ftr_l2, axis=0)
-        img_global_ftr_l2 = img_global_ftr_l2 - mean_global_ftr_l2[np.newaxis, :]        
+        self.global_ftr_mean = np.mean(img_global_ftr_l2, axis=0)
+#         img_global_ftr_l2 = img_global_ftr_l2 - self.global_ftr_mean[np.newaxis, :]        
         
         globalFtrDir = self.get_global_ftr_dir()
         if not os.path.exists(globalFtrDir):
@@ -559,6 +554,7 @@ class TrainPatchPreparer:
         meta_dict['local_context_paras'] = self.local_context_paras
         meta_dict['data_mean'] = pix_ftr_mean
         meta_dict['pixContextSemMean'] = batchPixContextSemMean
+        meta_dict['global_ftr_mean'] = self.global_ftr_mean
         meta_dict['num_vis'] = pix_ftr_dim
         meta_dict['img_size'] = 1
             
@@ -896,9 +892,7 @@ class TrainPatchPreparer:
         op.add_option("fredo-image-processing", 'fredo_image_processing', BooleanOptionParser,
                       "increase exposure by 1.5 and normalize L channel", default=0)
         op.add_option("log-luminance", 'log_luminance', BooleanOptionParser,
-                      "use log-luminance when computing image global feature?", default=0)  
-        op.add_option("do-compute-image-global-ftr", 'do_compute_image_global_ftr', BooleanOptionParser,
-                      "compute image global ftr?", default=0)         
+                      "use log-luminance when computing image global feature?", default=0)          
         op.add_option("do-compute-color-integral-map", 'do_compute_color_integral_map', BooleanOptionParser,
                       "compute image color integral maps?", default=0) 
         op.add_option("do-precompute-local-context-mean-color-ftr",\
